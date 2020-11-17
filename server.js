@@ -11,7 +11,7 @@ app.use(express.urlencoded ({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessWorkout", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindModify: false});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindModify: false});
 
 // establishing routes
 app.use(require("./routes/html-routes"))

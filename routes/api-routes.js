@@ -1,9 +1,60 @@
-const express = require("express");
+const express = require ("express")
 const app = express()
+const Workout = require('../models/workout.js')
 
-module.exports = (app)
-
+// gets all workouts 
 app.get("/api/workouts", (req, res) => {
-    workout.find({})
-    .then
+    Workout.find().then(data => {
+        res.json(data)
+    }).catch(err => {
+        res.json(err)
+    }) 
+});
+
+//gets last workout - getLastWorkout()
+
+//gets workout range - getWorkoutInRange()
+app.get("/api/workouts/range", (req, res) => {
+    Workout.find({}).limit(7).then(data => {
+        res.json(data)
+    }).catch(err => {
+        res.json(err)
+    }) 
+});
+//create new workout - createWorkout()
+//not needed 
+
+//add exercise - addExercise()
+app.post("/api/workouts", (req, res) => {
+    Workout.create({}).then(data => {
+        res.json(data)
+    }).catch(err => {
+        res.json(err)
+    })
 })
+//Update
+app.put("/api/workouts/:id", ({body, params}, res) => {
+    Workout.findByIdAndUpdate(
+        params.id,
+        { $push: { exercises: body } },
+        { new: true, runValidators: true }
+    ).then(data => {
+        res.json(data)
+    }).catch(err => {
+        res.json(err)
+    })
+})
+
+//delete workout 
+app.delete("/api/workouts", ({ body }, res) => {
+    Workout.findByIdAndDelete(body.id)
+    .then(() => {
+        res.json(true)
+    }).catch(err => {
+        res.json(err)
+    })
+});
+
+
+
+module.exports = (app);

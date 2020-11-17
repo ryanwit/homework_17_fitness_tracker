@@ -25,6 +25,9 @@ const workoutSchema = new Schema({
       sets: {
         type: Number,
       },
+      distance: {
+          type: Number,
+      },
       reps: {
         type: Number,
       },
@@ -42,13 +45,13 @@ const workoutSchema = new Schema({
     }
 );
 
-// adds to schema
+// adds to schema - takes all of increments of gets a total of workout
 workoutSchema.virtual("totalDuration").get(function () {
   return this.exercise.reduce((total, exercise) => {
     return total + exercise.duration;
   }, 0);
 });
 
-var workout = mongoose.model("models", workoutSchema);
+var Workout = mongoose.model("Workout", workoutSchema);
 
-module.exports = workout;
+module.exports = Workout;

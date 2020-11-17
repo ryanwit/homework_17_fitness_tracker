@@ -1,7 +1,5 @@
-const { model } = require("mongoose");
-// exporting an object containing all of our models
+// exporting model workout 
 
 module.exports = {
-    Exercise: require("./workout"),
-    Stats: require("./stats")
+    Workout: require('./workout')
 }
