@@ -47,7 +47,7 @@ const workoutSchema = new Schema({
 
 // adds to schema - takes all of increments of gets a total of workout
 workoutSchema.virtual("totalDuration").get(function () {
-  return this.exercise.reduce((total, exercise) => {
+  return this.exercises.reduce((total, exercise) => {
     return total + exercise.duration;
   }, 0);
 });

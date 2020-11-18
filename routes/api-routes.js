@@ -5,8 +5,10 @@ const Workout = require('../models/workout.js')
 // gets all workouts 
 app.get("/api/workouts", (req, res) => {
     Workout.find().then(data => {
+        //.log(data)
         res.json(data)
     }).catch(err => {
+        console.log(err)
         res.json(err)
     }) 
 });
