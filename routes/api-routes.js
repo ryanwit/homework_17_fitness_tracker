@@ -13,8 +13,6 @@ app.get("/api/workouts", (req, res) => {
     }) 
 });
 
-//gets last workout - getLastWorkout()
-
 //gets workout range - getWorkoutInRange()
 app.get("/api/workouts/range", (req, res) => {
     Workout.find({}).limit(7).then(data => {
@@ -23,8 +21,7 @@ app.get("/api/workouts/range", (req, res) => {
         res.json(err)
     }) 
 });
-//create new workout - createWorkout()
-//not needed 
+
 
 //add exercise - addExercise()
 app.post("/api/workouts", (req, res) => {
@@ -34,6 +31,7 @@ app.post("/api/workouts", (req, res) => {
         res.json(err)
     })
 })
+
 //Update
 app.put("/api/workouts/:id", ({body, params}, res) => {
     Workout.findByIdAndUpdate(
